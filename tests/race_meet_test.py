@@ -1,4 +1,4 @@
-"""The test scripts for the turtle class"""
+"""The test scripts for the RaceMeet class"""
 
 from race_meet import RaceMeet
 
