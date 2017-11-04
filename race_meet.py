@@ -3,7 +3,7 @@
 from random import randint
 
 
-class Race:
+class RaceMeet:
     def __init__(self):
         self.length = self.generate_length()
         self.number_of_competitors = self.generate_number_of_competitors()
