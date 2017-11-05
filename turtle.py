@@ -6,7 +6,8 @@ from turtle_names import TurtleNames
 
 
 class Turtle:
-    turtle_names = TurtleNames()
+    # turtle_names = TurtleNames()
+    TurtleNames.__init__()
 
     def __init__(self):
         self.name = self.generate_name()
@@ -14,9 +15,9 @@ class Turtle:
         self.stamina = self.generate_stamina()
 
     def generate_name(self):
-        turtle_name = TurtleNames.get_turtle_name(
-            randint(0, TurtleNames.get_length_turtle_names() - 1)
-        )
+        turtle_name = TurtleNames.turtle_names[(
+            randint(0, len(TurtleNames.turtle_names) - 1)
+        )]
         TurtleNames.turtle_names.remove(turtle_name)
 
         return turtle_name
