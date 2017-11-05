@@ -1,5 +1,7 @@
 """An actual race"""
 
+from turtle_has_no_energy_error import TurtleHasNoEnergyError
+
 
 class Race:
     def get_time_for_turtle_over_next_metre(self, speed):
@@ -8,6 +10,8 @@ class Race:
 
     def get_energy_for_turtle_after_next_metre(self, start_energy, stamina):
         energy_used_per_metre = 10 + (10 - stamina)
+        if (start_energy - energy_used_per_metre) <= 0:
+            raise TurtleHasNoEnergyError
         return start_energy - energy_used_per_metre
 
     def get_new_turtle_speed(self, current_speed, energy_before_metre,
@@ -16,7 +20,11 @@ class Race:
            (energy_before_metre >= 60) and (energy_after_metre < 60) or
            (energy_before_metre >= 40) and (energy_after_metre < 40) or
            (energy_before_metre >= 20) and (energy_after_metre < 20)):
-            new_speed = current_speed - 1
+            # A turtle can never have a speed less than 1
+            if (current_speed - 1) < 1:
+                new_speed = 1
+            else:
+                new_speed = current_speed - 1
         else:
             new_speed = current_speed
         return new_speed
@@ -26,8 +34,11 @@ class Race:
         total_time = 0
         for current_metre in range(1, length + 1):
             total_time += self.get_time_for_turtle_over_next_metre(speed)
-            new_energy = self.get_energy_for_turtle_after_next_metre(energy,
-                                                                     stamina)
+            try:
+                new_energy = self.get_energy_for_turtle_after_next_metre(energy,
+                                                                         stamina)
+            except TurtleHasNoEnergyError:
+                raise
             speed = self.get_new_turtle_speed(speed, energy, new_energy)
             energy = new_energy
         if energy <= 0:

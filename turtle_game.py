@@ -2,8 +2,10 @@
 
 import sys
 
+from race import Race
 from race_meet import RaceMeet
 from turtle import Turtle
+from turtle_has_no_energy_error import TurtleHasNoEnergyError
 
 
 def generate_competitor_list(number_of_competitors):
@@ -23,8 +25,19 @@ def main():
 
     competitors = generate_competitor_list(race_meet.number_of_competitors)
 
+    race = Race()
+    competitor_times = {}
+
     for i in range(0, len(competitors)):
-        print("Competitor {}: {}".format(i + 1, competitors[i].name))
+        try:
+            total_time_for_competitor = race.get_total_time_for_turtle(competitors[i].speed,
+                                                                    competitors[i].stamina,
+                                                                    race_meet.length)
+        except TurtleHasNoEnergyError:
+            print("Competitor {}: {} didn't have the energy to complete the race...".format(i + 1, competitors[i].name))
+            break
+        competitor_times[competitors[i].name] = total_time_for_competitor
+        print("Competitor {} ({}, {}): {} ran the race in {} seconds".format(i + 1, competitors[i].speed, competitors[i].stamina, competitors[i].name, total_time_for_competitor))
 
 
 if __name__ == '__main__':
