@@ -42,13 +42,11 @@ def main():
                 ("Competitor {}: {} didn't have the energy to complete the "
                  "race...").format(i + 1, competitors[i].name)
             )
-            break
+            continue
         competitor_times[competitors[i].name] = total_time_for_competitor
         print(
-            ("Competitor {} ({}, {}): "
+            ("Competitor {}: "
              "{} ran the race in {} seconds").format(i + 1,
-                                                     competitors[i].speed,
-                                                     competitors[i].stamina,
                                                      competitors[i].name,
                                                      total_time_for_competitor)
         )
