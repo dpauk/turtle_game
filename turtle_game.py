@@ -21,7 +21,9 @@ def main():
     race_meet = RaceMeet()
     print("Race name: {}".format(race_meet.name))
     print("Race length: {} metres".format(race_meet.length))
-    print("Number of competitors: {}\n".format(race_meet.number_of_competitors))
+    print(
+        "Number of competitors: {}\n".format(race_meet.number_of_competitors)
+    )
 
     competitors = generate_competitor_list(race_meet.number_of_competitors)
 
@@ -30,14 +32,26 @@ def main():
 
     for i in range(0, len(competitors)):
         try:
-            total_time_for_competitor = race.get_total_time_for_turtle(competitors[i].speed,
-                                                                    competitors[i].stamina,
-                                                                    race_meet.length)
+            total_time_for_competitor = (
+                race.get_total_time_for_turtle(competitors[i].speed,
+                                               competitors[i].stamina,
+                                               race_meet.length)
+            )
         except TurtleHasNoEnergyError:
-            print("Competitor {}: {} didn't have the energy to complete the race...".format(i + 1, competitors[i].name))
+            print(
+                ("Competitor {}: {} didn't have the energy to complete the "
+                 "race...").format(i + 1, competitors[i].name)
+            )
             break
         competitor_times[competitors[i].name] = total_time_for_competitor
-        print("Competitor {} ({}, {}): {} ran the race in {} seconds".format(i + 1, competitors[i].speed, competitors[i].stamina, competitors[i].name, total_time_for_competitor))
+        print(
+            ("Competitor {} ({}, {}): "
+             "{} ran the race in {} seconds").format(i + 1,
+                                                     competitors[i].speed,
+                                                     competitors[i].stamina,
+                                                     competitors[i].name,
+                                                     total_time_for_competitor)
+        )
 
 
 if __name__ == '__main__':

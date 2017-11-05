@@ -14,7 +14,9 @@ class Turtle:
         self.stamina = self.generate_stamina()
 
     def generate_name(self):
-        turtle_name = TurtleNames.get_turtle_name(randint(0, TurtleNames.get_length_turtle_names() - 1))
+        turtle_name = TurtleNames.get_turtle_name(
+            randint(0, TurtleNames.get_length_turtle_names() - 1)
+        )
         TurtleNames.turtle_names.remove(turtle_name)
 
         return turtle_name

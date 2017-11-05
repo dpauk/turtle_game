@@ -5,6 +5,7 @@ import pytest
 from race import Race
 from turtle_has_no_energy_error import TurtleHasNoEnergyError
 
+
 @pytest.fixture
 def race():
     return Race()
