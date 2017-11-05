@@ -6,7 +6,6 @@ from turtle_names import TurtleNames
 
 
 class Turtle:
-    # turtle_names = TurtleNames()
     TurtleNames.__init__()
 
     def __init__(self):
